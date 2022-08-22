@@ -25,7 +25,7 @@ const Join = () => {
                     <img src={logo} alt="logo" />
                     <h1>C CHAT</h1>
                     <input 
-                    id='join_input'
+                    id='join_input' 
                     type="text"
                     placeholder='Enter user name'
                     value={name}
