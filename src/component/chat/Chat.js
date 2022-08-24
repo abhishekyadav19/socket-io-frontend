@@ -7,7 +7,7 @@ import ReactScrollToBottom from "react-scroll-to-bottom";
 import closeIcon from "../images/closeIcon.png";
 import Message from '../message/Message';
 
-const ENDPOINT = "http://localhost:4500/";
+const ENDPOINT = "https://echatsapp.herokuapp.com/";
 let socket;
 const Chat = () => {
   const [messages, setMessages] = useState([])
