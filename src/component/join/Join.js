@@ -1,39 +1,30 @@
-import React, { useState } from 'react';
-import "../join/Join.css";
-import logo from "../images/logo.png";
-import { useNavigate } from "react-router-dom"
+import React, { useState } from 'react'
+import "./Join.css";
+import logo from "../images/logo.svg";
+import { useNavigate } from "react-router-dom";
 
-let user;
+
+export let user;
 
 const Join = () => {
-    const [name, setName] = useState({
-        name: ""
-    })
+    const [name, setName] = useState("");
     const navigate = useNavigate()
-    // const sumtHandler= (e) =>{
-    //     e.prventDefalult();
-    //     if(name){
-    //         user = document.getElementById('joinInput').value;
-    //         document.getElementById('joinInput').value = "";
-    //         navigate("/chat")
-    //     }
-    // }
+
+    const sendUser = (e) => {
+        user = name;
+        name.trim() && (navigate("/chat"))
+    }
+    
     return (
-        <>
-            <div className='join_page'>
-                <div className='join_container'>
-                    <img src={logo} alt="logo" />
-                    <h1>C CHAT</h1>
-                    <input 
-                    id='join_input' 
-                    type="text"
-                    placeholder='Enter user name'
-                    value={name}
-                    onChange={(e)=>setName(e.target.value)}
-                    />
+        <div className="JoinPage">
+            <div className="JoinContainer">
+                <img src={logo} alt="logo" />
+                <h1>Venturez Chat</h1>
+                <input onChange={(e) => setName(e.target.value)} placeholder="Enter Your Name" type="text" id="joinInput" value={name} 
+                 onKeyDown={(e)=>e.key==="Enter" ? sendUser(): null}/>
+                <button onClick={sendUser} className="joinbtn">Login In</button>
             </div>
-            </div>
-        </>
+        </div>
     )
 }
 
