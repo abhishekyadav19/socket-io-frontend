@@ -3,20 +3,23 @@ import "./message.css";
 
 
 const Message = ({ user, message, classs }) => {
-    return(
+    let time =new Date().toLocaleTimeString('en-US',{hour:"numeric",minute:"numeric",hour12:true});
+    return (
         (user) ?
-        (
-            <div className={`messageBox ${classs}`}  >
-                {`${user}: ${message}`}
-            </div>
-        )
-        :
-        (
-            <div className={`messageBox ${classs}`}>
-                {`You: ${message}`}
-            </div>
-        )
-)
+            (
+                <div className={`messageBox ${classs}`}  >
+                    {`${user}: ${message}`}
+                   <span> {time}</span>
+                </div>
+            )
+            :
+            (
+                <div className={`messageBox ${classs}`}>
+                    {`You: ${message}`}
+                    <span> {time}</span>
+                </div>
+            )
+    )
 
 }
 

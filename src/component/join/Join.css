@@ -1,4 +1,4 @@
-.JoinPage{
+.JoinPage {
     background-color: rgb(31, 29, 29);
     width: 100vw;
     height: 100vh;
@@ -7,19 +7,20 @@
     align-items: center;
 }
 
-.JoinContainer{
-   
-   
+.JoinContainer {
+
+
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.JoinContainer > img{
+.JoinContainer>img {
     width: 10vmax;
 }
-.JoinContainer > h1{
+
+.JoinContainer>h1 {
     color: white;
     font-size: 2.5vmax;
     width: 25vmax;
@@ -30,16 +31,26 @@
     box-sizing: border-box;
 }
 
-#joinInput{
+#joinInput {
     width: 25vmax;
     padding: 1.5vmax;
     border: none;
     outline: none;
     font-size: 1.2vmax;
-    margin: 2vmax;
     box-sizing: border-box;
 }
-.joinbtn{
+
+.inpt-main {
+    margin: 2vmax;
+}
+.error{
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    padding-left: 5px;
+    margin-top: 4px;
+}
+.joinbtn {
     width: 25vmax;
     padding: 1.5vmax;
     border: none;
@@ -47,11 +58,18 @@
     font-family: "Roboto";
     outline: none;
     font-size: 1.2vmax;
-   background-color: crimson;
-   box-sizing: border-box;
-   transition: all 0.3s;
-   cursor: pointer;
+    background-color: crimson;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    cursor: pointer;
 }
-.joinbtn:hover{
+
+.joinbtn:hover {
     background-color: rgb(180, 27, 58);
+}
+.googlelogin-bx{
+    margin-bottom: 2rem;
+}
+.googlelogin-bx button{
+    width: 25vmax;
 }

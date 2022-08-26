@@ -17,9 +17,9 @@ const Chat = () => {
     if(chat.trim() === ""){
       return false
     }else{
-      socket.emit("message", { chat, id })
+      socket.emit("message", { chat, id})
     }
-    // chat === "" ? null : socket.emit("message", { chat, id })
+    // (chat.trim() === "") ? null : socket.emit("message", { chat, id })
     // chat && socket.emit("message", { chat, id });
     setChat("")
   }
@@ -33,19 +33,18 @@ const Chat = () => {
     })
 
     socket.emit('joined', { user })
-
     socket.on('welcome', (data) => {
       setMessages([...messages, data])
-      // console.log(data.user, data.message);
+      console.log(data.user, data.message);
     })
     socket.on('userJoined', (data) => {
       setMessages([...messages, data])
-      // console.log(data.user, data.message);
+      console.log(data.user, data.message);
     })
 
     socket.on("leave", (data) => {
       setMessages([...messages, data])
-      // console.log(data.user, data.message);
+      console.log(data.user, data.message);
     })
 
     return () => {

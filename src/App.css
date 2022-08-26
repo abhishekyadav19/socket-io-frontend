@@ -4,10 +4,10 @@ body {
 
 
 @media (max-aspect-ratio: 7/10) {
-
+    .googlelogin-bx button{
+        width: 65vw !important;
+    }
     .JoinPage {
-
-
         display: flex;
         justify-content: center;
         align-items: flex-start !important;
