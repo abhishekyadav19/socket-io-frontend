@@ -1,4 +1,6 @@
 .messageBox {
+    word-break: break-all;
+    max-width: 80%;
     padding-bottom: 0.6vmax !important;
     padding: 1vmax;
     margin: .3vmax;
