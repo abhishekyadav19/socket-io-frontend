@@ -4,6 +4,12 @@ body {
 
 
 @media (max-aspect-ratio: 7/10) {
+    .img-file {
+        right: 24% !important;
+        position: absolute;
+        top: 22px !important;
+        cursor: pointer;
+    }
     .googlelogin-bx button{
         width: 65vw !important;
     }

@@ -2,7 +2,7 @@ import React from 'react'
 import "./message.css";
 
 
-const Message = ({ user, message, classs }) => {
+const Message = ({ user, message, classs,image }) => {
     let time =new Date().toLocaleTimeString('en-US',{hour:"numeric",minute:"numeric",hour12:true});
     return (
         (user) ?
@@ -10,6 +10,7 @@ const Message = ({ user, message, classs }) => {
                 <div className={`messageBox ${classs}`}  >
                     {`${user}: ${message}`}
                    <span> {time}</span>
+                   {image}
                 </div>
             )
             :
@@ -17,6 +18,7 @@ const Message = ({ user, message, classs }) => {
                 <div className={`messageBox ${classs}`}>
                     {`You: ${message}`}
                     <span> {time}</span>
+                    {image}
                 </div>
             )
     )

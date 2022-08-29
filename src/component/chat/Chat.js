@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { user } from "../join/Join"
 import socketIo from "socket.io-client";
 import "./chat.css";
@@ -6,19 +6,26 @@ import sendLogo from "../images/send.png";
 import ReactScrollToBottom from "react-scroll-to-bottom";
 import closeIcon from "../images/closeIcon.png";
 import Message from '../message/Message';
+// import { ReactComponent as SvgFile } from '../images/file-svg.svg';
+import UploadPng from '../images/upload-file.png';
 
-const ENDPOINT = "https://echatsapp.herokuapp.com/";
+// const ENDPOINT = "https://echatsapp.herokuapp.com/";
+const ENDPOINT = "http://localhost:4500/";
+
 let socket;
 const Chat = () => {
   const [messages, setMessages] = useState([])
   const [chat, setChat] = useState("")
+  const [image, setImage] = useState()
+  console.log(image, "image");
   const [id, setId] = useState("")
   const send = () => {
-    if(chat.trim() === ""){
+    if (chat.trim() === "") {
       return false
-    }else{
-      socket.emit("message", { chat, id})
+    } else {
+      socket.emit("message", { chat, id, image })
     }
+
     // (chat.trim() === "") ? null : socket.emit("message", { chat, id })
     // chat && socket.emit("message", { chat, id });
     setChat("")
@@ -34,21 +41,21 @@ const Chat = () => {
 
     socket.emit('joined', { user })
     socket.on('welcome', (data) => {
-      setMessages([...messages, data])
+      setMessages([...messages, data]);
       console.log(data.user, data.message);
-    })
+    }) 
     socket.on('userJoined', (data) => {
-      setMessages([...messages, data])
+      setMessages([...messages, data]);
       console.log(data.user, data.message);
     })
 
     socket.on("leave", (data) => {
-      setMessages([...messages, data])
+      setMessages([...messages, data]);
       console.log(data.user, data.message);
     })
 
     return () => {
-      socket.on("disconnect")
+      socket.on('disconnect');
       socket.off()
     }
   }, [])
@@ -56,16 +63,16 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on("sendMessage", (data) => {
-      setMessages([...messages, data])
+      setMessages([...messages, data]);
       // console.log(data.user, data.message, data.id)
       // console.log(messages,"hello");
     })
-
     return () => {
       socket.off()
     }
   }, [messages])
-  
+
+  const fileRef = useRef();
   return (
     <div className="chatPage">
       <div className="chatContainer">
@@ -74,16 +81,19 @@ const Chat = () => {
           <a href="/"> <img src={closeIcon} alt="Close" /></a>
         </div>
         <ReactScrollToBottom className="chatBox">
-          {messages?.map((items, i) => <Message user={items.id === id ? "" : items.user} message={items.message} classs={items.id === id ? 'right' : 'left'} key={i}/>)}
+          {messages?.map((items, i) => <Message user={items.id === id ? "" : items.user} message={items.message} classs={items.id === id ? 'right' : 'left'} key={i} image={items.image} />)}
         </ReactScrollToBottom>
-        <div className="inputBox">
+        <div className="inputBox input-bx-main">
           <input type="text" id="chatInput" value={chat}
             onChange={(e) => setChat(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter"  ? send() : null } />
+            onKeyDown={(e) => e.key === "Enter" ? send() : null} />
           <button onClick={send} className="sendBtn">
             <img src={sendLogo} alt="Send" />
           </button>
+          <img src={UploadPng} alt="" width="6%" onClick={()=>{fileRef.current.click()}} className="img-file"/>
+          <input ref={fileRef} type="file" name="image" id="image" onChange={(e) => { setImage(e.target.files[0]) }} hidden />
         </div>
+
       </div>
     </div>
 

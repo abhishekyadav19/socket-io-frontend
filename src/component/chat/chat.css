@@ -90,3 +90,18 @@
 .sendBtn:hover img {
     transform: translateX(10px);
 }
+.file-main{
+    position:absolute;
+    top: 20px;
+    text-align: right;
+    cursor: pointer;
+}
+.input-bx-main{
+    position: relative;
+}
+.img-file{
+    right: 22%;
+    position: absolute;
+    top: 18px;
+    cursor: pointer;
+}
